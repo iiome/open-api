@@ -141,7 +141,7 @@ export default class OpenapiFramework implements IOpenapiFramework {
 
     const paths = [].concat(this.paths);
     let routes = [];
-    paths.forEach((pathItem) => {
+    paths.forEach(pathItem => {
       if (byString(pathItem)) {
         pathItem = toAbsolutePath(pathItem);
         if (!byDirectory(pathItem)) {
@@ -153,7 +153,7 @@ export default class OpenapiFramework implements IOpenapiFramework {
           glob: this.routesGlob,
           indexFileRegExp: this.routesIndexFileRegExp
         })
-          .filter((fsRoutesItem) => {
+          .filter(fsRoutesItem => {
             return this.pathsIgnore ? !this.pathsIgnore.test(fsRoutesItem.route) : true;
           })
           .map(fsRoutesItem => {
@@ -164,7 +164,7 @@ export default class OpenapiFramework implements IOpenapiFramework {
         if (!pathItem.path || !pathItem.module ) {
           throw new Error(
             `${this.loggingPrefix}args.paths must consist of strings or valid route specifications`
-            );
+          );
         }
         routes.push(pathItem);
       }
@@ -175,7 +175,7 @@ export default class OpenapiFramework implements IOpenapiFramework {
     const dups = routes.filter((v,i,o) => {if(i>0 && v.path === o[i-1].path) return v.path;});
     if (dups.length > 0) {
       throw new Error(
-        `${this.loggingPrefix}args.paths produced duplicate urls: ${dups}`
+        `${this.loggingPrefix}args.paths produced duplicate urls for "${dups[0].path}"`
       );
     }
 

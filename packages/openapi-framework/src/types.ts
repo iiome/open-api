@@ -50,7 +50,7 @@ interface OpenapiFrameworkOptions {
   featureType: string
   name: string
   pathSecurity?: PathSecurityTuple[]
-  paths: string | [Object]
+  paths: string | Object[]
   pathsIgnore?: RegExp
   routesGlob?: string;
   routesIndexFileRegExp?: RegExp;
